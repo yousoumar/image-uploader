@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const multer = require("multer");
+const path = require("path");
 
 const app = express();
 app.use(express.static("public"));
@@ -12,12 +13,12 @@ app.use(express.json());
 const storage = multer.diskStorage({
   //destination for files
   destination: function (request, file, callback) {
-    callback(null, "./public/images");
+    callback(null, "./public/images/uploads");
   },
 
   //add back the extension
   filename: function (request, file, callback) {
-    callback(null, Date.now() + file.originalname);
+    callback(null, Date.now() + path.extname(file.originalname));
   },
 });
 
@@ -33,7 +34,7 @@ app.get("/", (req, res) => {
 app.post("/", upload.single("image"), (req, res) => {
   if (req.file) {
     console.log(req.file);
-    res.locals.path = "/images/" + req.file.filename;
+    res.locals.path = "/images/uploads/" + req.file.filename;
     res.render("index");
   } else throw "error";
 });
