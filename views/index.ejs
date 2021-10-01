@@ -5,8 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image uploader</title>
+    <link rel="stylesheet" href="/styles/app.css" />
   </head>
   <body>
-    <h1>Hello from Node.js</h1>
+    <div class="container">
+      <h1>Upload your image</h1>
+      <p class="files">File should be Jpeg, Png,...</p>
+      <div class="drag-area">
+        <img src="/images/image.svg" alt="" />
+        <p>Drag & Drop your image here</p>
+      </div>
+      <p>Or</p>
+      <button>Choose a file</button>
+      <input type="file" name="image" id="" hidden />
+    </div>
+    <script src="/scripts/app.js"></script>
   </body>
 </html>
