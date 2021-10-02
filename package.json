@@ -3,10 +3,9 @@
   "author": "yousoumar",
   "private": true,
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "URL=http://localhost:3000 PORT=3000 nodemon server.js"
   },
   "dependencies": {
-    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^6.0.8",
     "morgan": "^1.10.0",

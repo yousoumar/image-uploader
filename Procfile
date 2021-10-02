@@ -1,1 +1,1 @@
-web: node server.js
+web: URL=https://nodejs-images-uploader.herokuapp.com node server.js
