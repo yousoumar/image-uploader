@@ -1,11 +1,13 @@
 const express = require("express");
 const morgan = require("morgan");
 const multer = require("multer");
+const dotenv = require("dotenv");
 const path = require("path");
 
 const app = express();
 app.use(express.static("public"));
 app.use(morgan("dev"));
+dotenv.config();
 
 //define storage for the images
 const storage = multer.diskStorage({
@@ -31,12 +33,11 @@ app.get("/", (req, res) => {
 
 app.post("/", upload.single("image"), (req, res) => {
   if (req.file) {
-    console.log(req.file);
-    const path = "/images/uploads/" + req.file.filename;
+    const path = process.env.URL + "/images/uploads/" + req.file.filename;
     res.json({ path });
   } else throw "error";
 });
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`Server listening at port ${port}`);
+  console.log(`Server listening at ${process.env.URL}`);
 });
