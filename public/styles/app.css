@@ -145,12 +145,22 @@ body .link {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   margin-top: 1rem;
-  padding: 0.5rem 0.5rem;
+  padding: 1rem 0.5rem;
   max-width: 338px;
   margin-right: 0;
+  position: relative;
 }
 
 body .link p {
+  white-space: nowrap;
+  text-overflow: ellipsis;
   margin: 0 auto;
+  overflow: hidden;
+  padding-right: 5rem;
+}
+
+body .link button {
+  position: absolute;
+  right: 0.5rem;
 }
 /*# sourceMappingURL=app.css.map */
