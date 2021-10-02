@@ -22,6 +22,7 @@ body {
           align-items: center;
   min-height: 100vh;
   font-family: "Poppins", sans-serif;
+  padding: 0 1rem;
 }
 
 body .container {
@@ -33,6 +34,12 @@ body .container {
   min-height: 469px;
   padding: 32px;
   text-align: center;
+}
+
+@media all and (max-width: 430px) {
+  body .container {
+    min-width: 100%;
+  }
 }
 
 body .drag-area {
@@ -54,11 +61,19 @@ body .drag-area {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  overflow: hidden;
+}
+
+@media all and (max-width: 350px) {
+  body .drag-area {
+    width: 100%;
+  }
 }
 
 body h1 {
   color: #4f4f4f;
   font-size: 18px;
+  margin: 0.5rem 0 1rem 0;
 }
 
 body p {
@@ -80,5 +95,37 @@ body button {
   color: white;
   cursor: pointer;
   font-size: 12px;
+}
+
+body .uploaded {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+body .check {
+  width: 35px;
+  height: 35px;
+  margin: 0 auto;
+}
+
+body .link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  background: #f6f8fb;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-top: 1rem;
+  padding: 0 0.5rem;
+  max-width: 338px;
 }
 /*# sourceMappingURL=app.css.map */
