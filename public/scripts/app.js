@@ -16,7 +16,7 @@ input.onchange = async () => {
   container.innerHTML = `<p>Upoading ...</p>`;
 
   try {
-    const res = await fetch("http://localhost:3000/", options);
+    const res = await fetch("/", options);
     const data = await res.json();
     console.log(data);
     setTimeout(() => {
@@ -35,6 +35,6 @@ input.onchange = async () => {
     }, 1000);
   } catch (error) {
     console.log(error);
-    dragArea.innerHTML = `<p>Something went wrong, please come back later.</p>`;
+    container.innerHTML = `<p>Something went wrong, please come back later.</p>`;
   }
 };

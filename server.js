@@ -39,5 +39,5 @@ app.post("/", upload.single("image"), (req, res) => {
 });
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`Server listening at http://localhost:3000`);
+  console.log(`Server listening at port ${port}`);
 });
