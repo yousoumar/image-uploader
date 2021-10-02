@@ -1,15 +1,40 @@
 const button = document.querySelector("button");
 const input = document.querySelector("input");
+const dragArea = document.querySelector(".drag-area");
 const container = document.querySelector(".container");
+const message = document.querySelector(".message");
 let imageUrl;
-button.onclick = (e) => {
+
+dragArea.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  dragArea.style.border = "1px solid #97bef4";
+  message.innerText = "Drop to upload";
+});
+
+dragArea.addEventListener("dragleave", () => {
+  dragArea.style.border = "1px dashed #97bef4";
+  message.innerText = "Drag & Drop your image here";
+});
+
+dragArea.addEventListener("drop", (e) => {
+  e.preventDefault();
+  const file = e.dataTransfer.files[0];
+  sendFile(file);
+});
+
+button.addEventListener("click", (e) => {
   e.preventDefault();
   input.click();
-};
-input.onchange = async () => {
-  console.log(input.files[0]);
+});
+
+input.addEventListener("change", () => {
+  const file = input.files[0];
+  sendFile(file);
+});
+
+async function sendFile(file) {
   const formData = new FormData();
-  formData.append("image", input.files[0]);
+  formData.append("image", file);
   const options = {
     method: "POST",
     body: formData,
@@ -25,7 +50,7 @@ input.onchange = async () => {
       container.innerHTML = `
       <img src="/images/src/check.svg" class="check" alt="">
       <h1>Uploaded Successfully!</h1>
-      <div class= "drag-area" style="border: none; border-radius: 12px;">
+      <div class= "drag-area" style="border: none;">
         <img src=${data.path} alt="" class="uploaded" />     
       </div>
       <div class="link">
@@ -46,4 +71,4 @@ input.onchange = async () => {
     console.log(error);
     container.innerHTML = `<p>Something went wrong, please come back later.</p>`;
   }
-};
+}

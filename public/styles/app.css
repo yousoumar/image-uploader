@@ -67,6 +67,7 @@ body .drag-area {
       -ms-flex-pack: center;
           justify-content: center;
   overflow: hidden;
+  border-radius: 12px;
 }
 
 @media all and (max-width: 350px) {
@@ -78,17 +79,26 @@ body .drag-area {
 body h1 {
   color: #4f4f4f;
   font-size: 18px;
-  margin: 0.5rem 0 1rem 0;
+  margin-bottom: 1rem;
 }
 
 body p {
-  margin: 1rem 0;
+  margin-bottom: 1rem;
   font-size: 12px;
   color: #828282;
 }
 
 body p.files {
   font-size: 10px;
+}
+
+body p.or {
+  margin-top: 1rem;
+}
+
+body p.message {
+  margin-top: 1rem;
+  margin-bottom: 0;
 }
 
 body button {
@@ -116,7 +126,7 @@ body .uploaded {
 body .check {
   width: 35px;
   height: 35px;
-  margin: 0 auto;
+  margin: 0 auto 0.5rem auto;
 }
 
 body .link {
@@ -142,5 +152,6 @@ body .link {
 
 body .link p {
   white-space: nowrap;
+  margin: 0 auto;
 }
 /*# sourceMappingURL=app.css.map */

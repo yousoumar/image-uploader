@@ -6,7 +6,6 @@ const path = require("path");
 const app = express();
 app.use(express.static("public"));
 app.use(morgan("dev"));
-app.use(express.json());
 
 //define storage for the images
 const storage = multer.diskStorage({
