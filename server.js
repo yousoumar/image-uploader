@@ -5,7 +5,6 @@ const path = require("path");
 
 const app = express();
 app.use(express.static("public"));
-app.set("view engine", "ejs");
 app.use(morgan("dev"));
 app.use(express.json());
 
@@ -28,14 +27,14 @@ const upload = multer({
 });
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.sendFile(__dirname + "/views/index.html");
 });
 
 app.post("/", upload.single("image"), (req, res) => {
   if (req.file) {
     console.log(req.file);
-    res.locals.path = "/images/uploads/" + req.file.filename;
-    res.render("index");
+    const path = "/images/uploads/" + req.file.filename;
+    res.json({ path });
   } else throw "error";
 });
 const port = process.env.PORT || 3000;
