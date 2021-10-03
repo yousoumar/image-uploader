@@ -3,6 +3,7 @@ const input = document.querySelector("input");
 const dragArea = document.querySelector(".drag-area");
 const container = document.querySelector(".container");
 const message = document.querySelector(".message");
+const fileExtensions = ["image/jpeg", "image/jpg", "image/png", "image/svg"];
 let imageUrl;
 
 dragArea.addEventListener("dragover", (e) => {
@@ -29,16 +30,29 @@ button.addEventListener("click", (e) => {
 
 input.addEventListener("change", () => {
   const file = input.files[0];
+  input.value = "";
   sendFile(file);
 });
 
 async function sendFile(file) {
+  console.log(file);
+  if (!fileExtensions.includes(file.type)) {
+    message.innerText = "This file is not accepted";
+    dragArea.style.border = "1px solid red";
+    setTimeout(() => {
+      message.innerText = "Drag & Drop your image here";
+      dragArea.style.border = "1px dashed #97bef4";
+    }, 2000);
+    return;
+  }
+
   const formData = new FormData();
   formData.append("image", file);
   const options = {
     method: "POST",
     body: formData,
   };
+
   container.innerHTML = `<p>Upoading ...</p>`;
 
   try {

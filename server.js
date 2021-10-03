@@ -31,6 +31,7 @@ app.get("/", (req, res) => {
 
 app.post("/", upload.single("image"), (req, res) => {
   if (req.file) {
+    console.log(req.file);
     const path = process.env.URL + "/images/uploads/" + req.file.filename;
     res.json({ path });
   } else throw "error";
