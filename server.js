@@ -7,6 +7,8 @@ const app = express();
 app.use(express.static("public"));
 app.use(morgan("dev"));
 
+const fileExtensions = ["image/jpeg", "image/jpg", "image/png", "image/svg"];
+
 //define storage for the images
 const storage = multer.diskStorage({
   //destination for files
@@ -23,6 +25,13 @@ const storage = multer.diskStorage({
 //upload parameters for multer
 const upload = multer({
   storage: storage,
+  fileFilter: function (req, file, callback) {
+    if (!fileExtensions.includes(file.mimetype)) {
+      callback(null, false);
+    } else {
+      callback(null, true);
+    }
+  },
 });
 
 app.get("/", (req, res) => {
@@ -31,10 +40,11 @@ app.get("/", (req, res) => {
 
 app.post("/", upload.single("image"), (req, res) => {
   if (req.file) {
-    console.log(req.file);
     const path = process.env.URL + "/images/uploads/" + req.file.filename;
     res.json({ path });
-  } else throw "error";
+  } else {
+    res.json({ path: null });
+  }
 });
 const port = process.env.PORT;
 app.listen(port, () => {

@@ -35,7 +35,6 @@ input.addEventListener("change", () => {
 });
 
 async function sendFile(file) {
-  console.log(file);
   if (!fileExtensions.includes(file.type)) {
     message.innerText = "This file is not accepted";
     dragArea.style.border = "1px solid red";
@@ -58,7 +57,13 @@ async function sendFile(file) {
   try {
     const res = await fetch("/", options);
     const data = await res.json();
-    console.log(data);
+    if (!data.path) {
+      container.innerHTML = `<p>This file is not accepted</p>`;
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
+      return;
+    }
     setTimeout(() => {
       imageUrl = data.path;
       container.innerHTML = `
@@ -76,10 +81,9 @@ async function sendFile(file) {
       const button = document.querySelector(".copy-button");
       button.addEventListener("click", () => {
         navigator.clipboard.writeText(imageUrl);
-        button.innerText = "Copied";
+        button.innerText = "Done";
         setTimeout(() => (button.innerText = "Copy"), 1000);
       });
-      console.log();
     }, 1000);
   } catch (error) {
     console.log(error);
