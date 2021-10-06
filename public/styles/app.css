@@ -142,6 +142,7 @@ body .link {
   max-width: 338px;
   margin-right: 0;
   position: relative;
+  overflow: hidden;
 }
 
 body .link p {
