@@ -8,6 +8,6 @@ You can send an image to the server, which returns the path to this image in `JS
 
 # Overview
 
-The project is hosted by `Heroku`, et and you can test it by clicking on the link above, in the `Github` about section. With the hope that, some one will find something interesting in this repository, it was your unknown friend !😉
+The project is hosted by `Heroku`. You can test it by clicking on the link above, in the `Github` about section. With the hope that, some one will find something interesting in this repository, it was your unknown friend !😉
 
 <img src = "public/images/src/screenshot.png"/>
